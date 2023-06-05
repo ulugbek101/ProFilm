@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container row m-auto justify-content-center">
+    {% for film in films %}
+    <div class="card col-4 m-3 p-0" style="width: 320px;">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            {% if film.photo %}
+            <img src="{{ film.photo.url }}" height="400px" width="100%" />
+            {% endif %}
+            <a href="{% url 'detail' pk=film.id %}">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ film.title }}</h5>
+            <p class="card-text">{{ film.description|truncatechars:80 }}</p>
+            <a href="{% url 'detail' pk=film.id %}" class="btn btn-primary w-100">Read more ...</a>
+            {% if request.user.is_authenticated and film.owner == request.user %}
+            <div class="d-flex flex-row mt-1">
+                <a href="{% url 'edit' pk=film.id %}" class="btn btn-warning w-50 me-1">Edit</a>
+                <a href="{% url 'delete' pk=film.id %}" class="btn btn-danger w-50 ms-1">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

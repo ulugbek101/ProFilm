@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container row m-auto justify-content-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>Are you sure to delete "{{ film.title }}" ?</h1>
+        <div class="d-flex flex-row align-items-start mt-2">
+            <img src="{{ film.photo.url }}" alt="{{ film.title }}" width="400px">
+            <div class="d-flex flex-row align-items-center mt-1 ms-1 w-25">
+                <a href="{% url 'home' %}" class="btn btn-primary w-50 me-1">Cancel</a>
+                <button type="submit" class="btn btn-danger w-50 ms-1">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+

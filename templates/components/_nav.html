@@ -1,0 +1,39 @@
+<nav class="container d-flex flex-row align-items-center justify-content-between p-3">
+    <div class="d-flex flex-row align-items-center">
+        <i class="fab fa-youtube fa-2x text-danger"></i>
+        <p class="ms-2 m-0">ProFilm</p>
+    </div>
+    <ul class="list-unstyled d-flex flex-row m-0">
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'create_film' %}" class="p-2 nav-link">Add Film</a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'home' %}" class="p-2 nav-link">Films</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <div class="dropdown">
+            <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
+            >
+                {{ request.user.username }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+        {% else %}
+        <li>
+            <a href="{% url 'login' %}" class="p-2 nav-link text-white btn btn-primary">Login</a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
+<hr class="mt-0">
