@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-k+_n7kjy^7ca+9lteu!)5a%k^aw21st&1gqstw67%+rbwhtz#x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['profilm.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://profilm.up.railway.app'
+]
 
 
 # Application definition
